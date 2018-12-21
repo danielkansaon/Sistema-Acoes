@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaee.sistema_acoes.domain.Cliente;
-import com.javaee.sistema_acoes.services.ClienteService;
+import com.javaee.sistema_acoes.services.IClienteService;
 
 @RestController
 @RequestMapping(AcaoController.BASE_URL)
@@ -22,9 +22,9 @@ public class ClienteController {
 
 	public static final String BASE_URL = "/api/v1/cliente";
 
-    private final ClienteService clienteService;
+    private final IClienteService clienteService;
 
-    public ClienteController(ClienteService _clienteService) {
+    public ClienteController(IClienteService _clienteService) {
         this.clienteService = _clienteService;
     }
 

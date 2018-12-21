@@ -8,17 +8,17 @@ import com.javaee.sistema_acoes.domain.Cliente;
 import com.javaee.sistema_acoes.repositories.IClienteRepository;
 
 import com.javaee.sistema_acoes.domain.Empresa;
-//import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
+import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
 
 @Component
 public class ApplicationBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private IClienteRepository clienteRepository;
-    //private EmpresaRepository empresaRepository;
+    private IEmpresaRepository empresaRepository;
 	
-	public ApplicationBootstrap(IClienteRepository _clienteRepository) {
+	public ApplicationBootstrap(IClienteRepository _clienteRepository, IEmpresaRepository _empresaRepository) {
         this.clienteRepository = _clienteRepository;
-        //this.empresaRepository = _empresaRepository;
+        this.empresaRepository = _empresaRepository;
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
             clienteRepository.deleteAll();
             
             loadEmpresas();
-            //loadCategories();
+            loadClientes();
 		}
 	}
 	
@@ -42,9 +42,9 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
     }
 
     private void loadEmpresas() {
-        //Empresa emp = new Empresa();
-        //emp.setNome("Empresa X");
-        //empresaRepository.save(emp);
+        Empresa emp = new Empresa();
+        emp.setNome("Empresa X");
+        empresaRepository.save(emp);
     }
 
 }

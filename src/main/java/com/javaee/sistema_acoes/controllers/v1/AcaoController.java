@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.javaee.sistema_acoes.domain.Acao;
-import com.javaee.sistema_acoes.services.AcaoService;
+import com.javaee.sistema_acoes.services.IAcaoService;
 
 @RestController
 @RequestMapping(AcaoController.BASE_URL)
@@ -23,9 +23,9 @@ public class AcaoController {
 	public static final String BASE_URL = "/api/v1/acao";
     public static int numero_maximo_acoes = 5;
 
-    private final AcaoService acaoService;
+    private final IAcaoService acaoService;
 
-    public AcaoController(AcaoService _acaoService) {
+    public AcaoController(IAcaoService _acaoService) {
         this.acaoService = _acaoService;
     }
 
