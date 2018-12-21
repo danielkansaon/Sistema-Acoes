@@ -8,5 +8,6 @@ import java.util.Date;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.javaee.sistema_acoes.domain.Cliente;
 
+@Repository
 public interface IClienteRepository extends MongoRepository<Cliente, Long> {
 }

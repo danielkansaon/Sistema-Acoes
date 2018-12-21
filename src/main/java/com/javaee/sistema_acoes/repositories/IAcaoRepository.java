@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import com.javaee.sistema_acoes.domain.Acao;
 
+@Repository
 public interface IAcaoRepository extends MongoRepository<Acao, Long> {
 
 	public Acao obter_acao_empresa(long idEmpresa);

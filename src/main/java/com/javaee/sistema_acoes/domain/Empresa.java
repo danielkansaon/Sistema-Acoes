@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class Empresa {
 	
+	@Id
 	private int id;
 	private String nome;
 }

@@ -16,6 +16,7 @@ import lombok.Setter;
 @Document
 public class Acao{
 
+	@Id
 	private Long id;
 	private Long cod_empresa;
 	private float valor_inicial;
