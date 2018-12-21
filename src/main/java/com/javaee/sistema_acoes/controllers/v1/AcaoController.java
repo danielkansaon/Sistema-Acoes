@@ -23,34 +23,34 @@ public class AcaoController {
 	public static final String BASE_URL = "/api/v1/acao";
     public static int numero_maximo_acoes = 5;
 
-    private final IAcaoService acaoService;
+    private final IAcaoService service;
 
     public AcaoController(IAcaoService _acaoService) {
-        this.acaoService = _acaoService;
+        this.service = _acaoService;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Set<Acao> getAll(){
-        return acaoService.lista_todas_acoes();
+        return service.lista_todas_acoes();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Acao create(@RequestBody Acao acao){
-        return acaoService.criar_acao(acao);
+        return service.criar_acao(acao);
     }
 
     @PutMapping({"/{id}"})
     @ResponseStatus(HttpStatus.OK)
     public Acao comprarAcao(@PathVariable Long id_novo_cliente, @RequestBody Acao acao){
-        return acaoService.comprar_acao(id_novo_cliente, acao);
+        return service.comprar_acao(id_novo_cliente, acao);
     }
 
     @PutMapping({"/{id}"})
     @ResponseStatus(HttpStatus.OK)
     public Acao venderAcao(@PathVariable Long id_novo_cliente, @RequestBody Acao acao){
-        return acaoService.vender_acao(id_novo_cliente, acao);
+        return service.vender_acao(id_novo_cliente, acao);
     }
 
     @PutMapping({"/{id}"})
