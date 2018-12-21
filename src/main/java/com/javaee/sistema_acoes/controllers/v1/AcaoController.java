@@ -1,4 +1,4 @@
-package com.javaee.mongodb.controllers.v1;
+package com.javaee.sistema_acoes.controllers.v1;
 
 import java.util.Set;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javaee.mongodb.domain.Acao;
-import com.javaee.mongodb.services.AcaoService;
+import com.javaee.sistema_acoes.domain.Acao;
+import com.javaee.sistema_acoes.services.AcaoService;
 
 @RestController
 @RequestMapping(AcaoController.BASE_URL)
@@ -57,6 +57,6 @@ public class AcaoController {
     @ResponseStatus(HttpStatus.OK)
     public String alterarNumAcoes(int id){
         numero_maximo_acoes = id;
-        return "Ok"
+        return "Ok";
     }
 }

@@ -1,10 +1,10 @@
-package com.javaee.mongodb.services;
+package com.javaee.sistema_acoes.services;
 
 import java.util.Set;
 
-import com.javaee.mongodb.domain.Cliente;
+import com.javaee.sistema_acoes.domain.Cliente;
 
-public interface IAcaoService {
+public interface IClienteService {
 
 	Set<Cliente> retornar_todos();
 	

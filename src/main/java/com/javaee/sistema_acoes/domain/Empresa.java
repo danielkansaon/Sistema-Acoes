@@ -1,4 +1,4 @@
-package com.javaee.mongodb.domain;
+package com.javaee.sistema_acoes.domain;
 
 import java.util.UUID;
 
@@ -10,5 +10,5 @@ import lombok.Setter;
 public class Empresa {
 	
 	private int id;
-	private String nome
+	private String nome;
 }

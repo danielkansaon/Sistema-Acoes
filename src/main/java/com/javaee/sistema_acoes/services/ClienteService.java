@@ -1,4 +1,4 @@
-package com.javaee.mongodb.services;
+package com.javaee.sistema_acoes.services;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.javaee.mongodb.domain.Cliente;
-import com.javaee.mongodb.repositories.IClienteRepository;
+import com.javaee.sistema_acoes.domain.Cliente;
+import com.javaee.sistema_acoes.repositories.IClienteRepository;
 
 @Service
 public class ClienteService implements IClienteService{

@@ -1,4 +1,4 @@
-package com.javaee.mongodb.services;
+package com.javaee.sistema_acoes.services;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.javaee.mongodb.domain.Acao;
-import com.javaee.mongodb.repositories.IAcaoRepository;
+import com.javaee.sistema_acoes.domain.Acao;
+import com.javaee.sistema_acoes.repositories.IAcaoRepository;
 
 @Service
 public class AcaoService implements IAcaoService{
 	private IAcaoRepository acaoRepository;
 	
-	public MercadoService(IAcaoRepository acaoRepository){
+	public AcaoService(IAcaoRepository acaoRepository){
 		this.acaoRepository = acaoRepository;
 	}
 	
@@ -33,15 +33,15 @@ public class AcaoService implements IAcaoService{
 	}
 
 	@Override
-	public Set<Acao> comprar_acao(Long id, Acao acao) {
-		acao.setIdcliente(id)
+	public Acao comprar_acao(Long id, Acao acao) {
+		acao.setIdcliente(id);
 		Acao acaoSaved = acaoRepository.save(acao);
 		return acaoSaved;
 	}
 
 	@Override
-	public void vender_acao(Long id, Acao acao) {
-		acao.setIdcliente(id)
+	public Acao vender_acao(Long id, Acao acao) {
+		acao.setIdcliente(id);
 		Acao acaoSaved = acaoRepository.save(acao);
 		return acaoSaved;
 	}

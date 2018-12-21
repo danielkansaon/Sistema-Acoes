@@ -1,4 +1,4 @@
-package com.javaee.mongodb.controllers.v1;
+package com.javaee.sistema_acoes.controllers.v1;
 
 import java.util.Set;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.javaee.mongodb.domain.Cliente;
-import com.javaee.mongodb.services.ClienteService;
+import com.javaee.sistema_acoes.domain.Cliente;
+import com.javaee.sistema_acoes.services.ClienteService;
 
 @RestController
 @RequestMapping(AcaoController.BASE_URL)
@@ -30,13 +30,13 @@ public class ClienteController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Set<Acao> getAll(){
+    public Set<Cliente> getAll(){
         return clienteService.retornar_todos();
     }
     
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente){
-        return acaoService.criar_cliente(cliente);
+        return clienteService.criar_cliente(cliente);
     }
 }

@@ -1,9 +1,9 @@
-package com.diogo.trabalhofinal.mercadoacoes.repositories;
+package com.javaee.sistema_acoes.repositories;
 
 import java.util.Date;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import com.diogo.trabalhofinal.mercadoacoes.domain.Acao;
+import com.javaee.sistema_acoes.domain.Acao;
 
 public interface IAcaoRepository extends MongoRepository<Acao, Long> {
 

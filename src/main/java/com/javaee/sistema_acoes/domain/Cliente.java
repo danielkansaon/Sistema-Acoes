@@ -1,4 +1,4 @@
-package com.javaee.mongodb.domain;
+package com.javaee.sistema_acoes.domain;
 
 import java.util.ArrayList;
 import java.util.List;

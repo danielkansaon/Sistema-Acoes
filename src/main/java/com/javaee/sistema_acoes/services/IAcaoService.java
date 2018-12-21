@@ -1,15 +1,17 @@
-package com.javaee.mongodb.services;
+package com.javaee.sistema_acoes.services;
 
 import java.util.Set;
 
-import com.javaee.mongodb.domain.Acao;
+import com.javaee.sistema_acoes.domain.Acao;
 
 public interface IAcaoService {
 
 	Set<Acao> lista_todas_acoes();
 	
-    Set<Acao> comprar_acao(Long id_cliente, Long id_empresa, int qtd);
+    Acao comprar_acao(Long id, Acao acao);
 	
-	void void vender_acao(Long id);
+    Acao vender_acao(Long id, Acao acao);
+    
+    Acao criar_acao(Acao acao);
 
 }
