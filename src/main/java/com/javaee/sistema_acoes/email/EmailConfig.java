@@ -1,4 +1,4 @@
-package com.javaee.sistema_acoes.emailsender;
+package com.javaee.sistema_acoes.email;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

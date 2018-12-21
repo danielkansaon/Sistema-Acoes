@@ -17,7 +17,7 @@ public class Cliente {
 
 	@Id
 	private Long id_cliente;
-	private Long nome;
+	private String nome;
 	
 	@DBRef
 	private List<Acao> acoes;

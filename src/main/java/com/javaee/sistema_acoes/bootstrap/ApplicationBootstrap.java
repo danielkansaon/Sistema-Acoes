@@ -5,20 +5,20 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.javaee.sistema_acoes.domain.Cliente;
-import com.javaee.sistema_acoes.repositories.ClienteRepository;
+import com.javaee.sistema_acoes.repositories.IClienteRepository;
 
 import com.javaee.sistema_acoes.domain.Empresa;
-import com.javaee.sistema_acoes.repositories.EmpresaRepository;
+//import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
 
 @Component
 public class ApplicationBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private ClienteRepository clienteRepository;
-    private EmpresaRepository empresaRepository;
+    private IClienteRepository clienteRepository;
+    //private EmpresaRepository empresaRepository;
 	
-	public ApplicationBootstrap(ClienteRepository _clienteRepository, EmpresaRepository _empresaRepository) {
+	public ApplicationBootstrap(IClienteRepository _clienteRepository) {
         this.clienteRepository = _clienteRepository;
-        this.empresaRepository = _empresaRepository;
+        //this.empresaRepository = _empresaRepository;
 	}
 	
 	@Override
@@ -27,7 +27,7 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
             clienteRepository.deleteAll();
             
             loadEmpresas();
-            loadCategories();
+            //loadCategories();
 		}
 	}
 	
@@ -36,20 +36,15 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
         cli.setNome("João");
         clienteRepository.save(cli);
 
-        Cliente cli = new Cliente();
-        cli.setNome("Maria");
-        clienteRepository.save(cli);
+        Cliente cli2 = new Cliente();
+        cli2.setNome("Maria");
+        clienteRepository.save(cli2);
     }
 
     private void loadEmpresas() {
-        Empresa emp = new Empresa();
-        emp.setNome("Empresa X");
-        empresaRepository.save(emp);
+        //Empresa emp = new Empresa();
+        //emp.setNome("Empresa X");
+        //empresaRepository.save(emp);
     }
 
-    private void loadAcoes() {
-        Empresa emp = new Empresa();
-        emp.setNome("Empresa X");
-        empresaRepository.save(emp);
-    }
 }

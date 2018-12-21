@@ -1,4 +1,4 @@
-package com.javaee.sistema_acoes.emailsender;
+package com.javaee.sistema_acoes.email;
 
 public class EmailSender {
 
@@ -11,5 +11,4 @@ public class EmailSender {
 		EmailConfig config = new EmailConfig();		
 		config.sendEmail(fromEmail, password, toEmail, subject, body);
 	}
-
 }
