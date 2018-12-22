@@ -31,4 +31,16 @@ public class ClienteService implements IClienteService{
 		return clienteRepository.save(cliente);
 	}
 
+	@Override
+	public Cliente obterClientePorId(Long id) {
+		return obterPorId(id);
+	}
+	
+	private Cliente obterPorId(Long id) {
+		Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+		if (!clienteOptional.isPresent()) {
+            throw new IllegalArgumentException("Id inválido: " + id.toString());
+        }
+		return clienteOptional.get();
+	}
 }

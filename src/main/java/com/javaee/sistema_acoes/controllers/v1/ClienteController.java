@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.javaee.sistema_acoes.domain.Cliente;
 import com.javaee.sistema_acoes.services.IClienteService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value = "Cliente")
 @RestController
 @RequestMapping(AcaoController.BASE_URL)
 public class ClienteController {
@@ -28,12 +32,14 @@ public class ClienteController {
         this.clienteService = _clienteService;
     }
 
+    @Api(value = "Obter todos os clientes")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Set<Cliente> getAll(){
         return clienteService.retornar_todos();
     }
     
+    @Api(value = "Criar um novo cliente")
     @PostMapping({"/criar"})
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente){

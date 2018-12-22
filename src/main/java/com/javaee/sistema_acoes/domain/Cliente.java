@@ -18,6 +18,7 @@ public class Cliente {
 	@Id
 	private Long id_cliente;
 	private String nome;
+	private String email;
 	
 	@DBRef
 	private List<Acao> acoes;

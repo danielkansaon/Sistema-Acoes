@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.javaee.sistema_acoes.domain.Acao;
 import com.javaee.sistema_acoes.repositories.IAcaoRepository;
 
+import com.javaee.sistema_acoes.email;
+
 @Service
 public class AcaoService implements IAcaoService{
 	private IAcaoRepository acaoRepository;
@@ -36,6 +38,13 @@ public class AcaoService implements IAcaoService{
 	public Acao comprar_acao(Long id, Acao acao) {
 		acao.setIdcliente(id);
 		Acao acaoSaved = acaoRepository.save(acao);
+
+		new Thread("emailCompra"){
+			public void run(){
+				EmailSender.send("kansaonp@gmail.com", "Compra de Ação", "Confirmação da compra de uma nova ação!");
+			}
+		}.start();
+		
 		return acaoSaved;
 	}
 
@@ -43,6 +52,13 @@ public class AcaoService implements IAcaoService{
 	public Acao vender_acao(Long id, Acao acao) {
 		acao.setIdcliente(id);
 		Acao acaoSaved = acaoRepository.save(acao);
+
+		new Thread("emailVenda"){
+			public void run(){
+				EmailSender.send("kansaonp@gmail.com", "Venda de Ação", "Confirmação da venda de uma ação!");
+			}
+		}.start();
+		
 		return acaoSaved;
 	}
 }

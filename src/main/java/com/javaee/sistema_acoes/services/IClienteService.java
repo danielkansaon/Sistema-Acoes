@@ -8,6 +8,8 @@ public interface IClienteService {
 
 	Set<Cliente> retornar_todos();
 	
-    Cliente criar_cliente(Cliente cliente);    
+  Cliente criar_cliente(Cliente cliente);    
+
+  Cliente obterClientePorId(Long id);
   }
 
