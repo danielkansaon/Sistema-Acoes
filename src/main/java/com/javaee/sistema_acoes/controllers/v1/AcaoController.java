@@ -35,28 +35,28 @@ public class AcaoController {
         return service.lista_todas_acoes();
     }
 
-    @PostMapping
+    @PostMapping({"/novo/{idComprador}"})
     @ResponseStatus(HttpStatus.CREATED)
     public Acao create(@RequestBody Acao acao){
         return service.criar_acao(acao);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"/comprar/{idComprador}"})
     @ResponseStatus(HttpStatus.OK)
-    public Acao comprarAcao(@PathVariable Long id_novo_cliente, @RequestBody Acao acao){
-        return service.comprar_acao(id_novo_cliente, acao);
+    public Acao comprarAcao(@PathVariable Long idComprador, @RequestBody Acao acao){
+        return service.comprar_acao(idComprador, acao);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"/vender/{idComprador}"})
     @ResponseStatus(HttpStatus.OK)
-    public Acao venderAcao(@PathVariable Long id_novo_cliente, @RequestBody Acao acao){
-        return service.vender_acao(id_novo_cliente, acao);
+    public Acao venderAcao(@RequestBody Acao acao){
+        return service.vender_acao((long)0, acao);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"alterar_acoes/{numAcao}"})
     @ResponseStatus(HttpStatus.OK)
-    public String alterarNumAcoes(int id){
-        numero_maximo_acoes = id;
+    public String alterarNumAcoes(int numAcao){
+        numero_maximo_acoes = numAcao;
         return "Ok";
     }
 }

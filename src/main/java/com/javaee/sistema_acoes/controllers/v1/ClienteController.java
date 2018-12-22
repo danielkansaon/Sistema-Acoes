@@ -34,9 +34,9 @@ public class ClienteController {
         return clienteService.retornar_todos();
     }
     
-    @PostMapping
+    @PostMapping({"/criar"})
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente){
-        return clienteService.criar_cliente(cliente);
+       return clienteService.criar_cliente(cliente);
     }
 }
