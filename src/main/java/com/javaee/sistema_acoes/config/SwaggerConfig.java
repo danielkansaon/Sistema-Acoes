@@ -28,11 +28,12 @@ public class SwaggerConfig {
                 .apiInfo(metaData());
     }
 	
+	@SuppressWarnings("deprecation")
 	private ApiInfo metaData(){
 
         Contact contact = new Contact("Daniel", "https://website.com", "kansaonp@gmail.com");
 
-        @SuppressWarnings("deprecation")
+        //@SuppressWarnings("deprecation");
         
         return new ApiInfo(
                 "Mercado de Ações - JEE",
@@ -41,7 +42,6 @@ public class SwaggerConfig {
                 "Terms of Service: N/A",
                 "Daniel",
                 "Apache License Version 2.0",
-                "https://www.apache.org/licenses/LICENSE-2.0",
-                new ArrayList<>());
+                "https://www.apache.org/licenses/LICENSE-2.0");
     }
 }

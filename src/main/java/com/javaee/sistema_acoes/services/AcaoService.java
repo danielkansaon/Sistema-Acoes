@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaee.sistema_acoes.domain.Acao;
+import com.javaee.sistema_acoes.email.EmailSender;
 import com.javaee.sistema_acoes.repositories.IAcaoRepository;
 
-import com.javaee.sistema_acoes.email;
 
 @Service
 public class AcaoService implements IAcaoService{
