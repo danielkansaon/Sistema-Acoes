@@ -32,14 +32,14 @@ public class ClienteController {
         this.clienteService = _clienteService;
     }
 
-    @Api(value = "Obter todos os clientes")
+    @ApiOperation(value = "Obter todos os clientes")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Set<Cliente> getAll(){
         return clienteService.retornar_todos();
     }
     
-    @Api(value = "Criar um novo cliente")
+    @ApiOperation(value = "Criar um novo cliente")
     @PostMapping({"/criar"})
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente){
