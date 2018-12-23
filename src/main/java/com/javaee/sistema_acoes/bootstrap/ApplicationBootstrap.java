@@ -42,9 +42,9 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
     }
 
     private void loadEmpresas() {
-        Empresa emp = new Empresa();
-        emp.setNome("Empresa X");
-        empresaRepository.save(emp);
+        //Empresa emp = new Empresa();
+        //emp.setNome("Empresa X");
+        //empresaRepository.save(emp);
     }
 
 }

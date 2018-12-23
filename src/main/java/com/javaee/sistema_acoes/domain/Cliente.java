@@ -16,7 +16,7 @@ import lombok.Setter;
 public class Cliente {
 
 	@Id
-	private Long id_cliente;
+	private long id_cliente;
 	private String nome;
 	private String email;
 	

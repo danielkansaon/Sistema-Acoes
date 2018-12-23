@@ -34,7 +34,7 @@ public class AcaoController {
     }
 
     @ApiOperation(value = "Obter todas as ações")
-    @GetMapping
+    @GetMapping({"/todas"})
     @ResponseStatus(HttpStatus.OK)
     public Set<Acao> getAll(){
         return service.lista_todas_acoes();
@@ -50,7 +50,7 @@ public class AcaoController {
     @ApiOperation(value = "Comprar uma ação")
     @PutMapping({"/comprar/{idComprador}"})
     @ResponseStatus(HttpStatus.OK)
-    public Acao comprarAcao(@PathVariable Long idComprador, @RequestBody Acao acao){
+    public Acao comprarAcao(@PathVariable long idComprador, @RequestBody Acao acao){
         return service.comprar_acao(idComprador, acao);
     }
 

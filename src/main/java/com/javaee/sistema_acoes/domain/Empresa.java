@@ -12,6 +12,6 @@ import lombok.Setter;
 public class Empresa {
 	
 	@Id
-	private int id;
+	private long id;
 	private String nome;
 }

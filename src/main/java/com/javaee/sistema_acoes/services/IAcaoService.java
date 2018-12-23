@@ -8,9 +8,9 @@ public interface IAcaoService {
 
 	Set<Acao> lista_todas_acoes();
 	
-    Acao comprar_acao(Long id, Acao acao);
+    Acao comprar_acao(long id, Acao acao);
 	
-    Acao vender_acao(Long id, Acao acao);
+    Acao vender_acao(long id, Acao acao);
     
     Acao criar_acao(Acao acao);
 

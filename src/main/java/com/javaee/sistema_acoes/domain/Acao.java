@@ -17,13 +17,13 @@ import lombok.Setter;
 public class Acao{
 
 	@Id
-	private Long id;
-	private Long cod_empresa;
+	private long id;
+	private long cod_empresa;
 	private float valor_inicial;
 	private float valor_atual;
 	
 	@Nullable
 	private Date data_hora;
 	@Nullable
-	private Long idcliente;
+	private long idcliente;
 }

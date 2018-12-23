@@ -35,7 +35,7 @@ public class AcaoService implements IAcaoService{
 	}
 
 	@Override
-	public Acao comprar_acao(Long id, Acao acao) {
+	public Acao comprar_acao(long id, Acao acao) {
 		acao.setIdcliente(id);
 		Acao acaoSaved = acaoRepository.save(acao);
 
@@ -49,7 +49,7 @@ public class AcaoService implements IAcaoService{
 	}
 
 	@Override
-	public Acao vender_acao(Long id, Acao acao) {
+	public Acao vender_acao(long id, Acao acao) {
 		acao.setIdcliente(id);
 		Acao acaoSaved = acaoRepository.save(acao);
 
