@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.javaee.sistema_acoes.domain.Acao;
 
 @Repository
-public interface IAcaoRepository extends MongoRepository<Acao, Long> {
+public interface AcaoRepository extends MongoRepository<Acao, Long> {
     Acao findById(String id);    
     List<Acao> findByEmpresa(String id);
 }

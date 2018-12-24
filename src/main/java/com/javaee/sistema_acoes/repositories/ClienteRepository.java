@@ -8,9 +8,9 @@ import java.util.Date;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.javaee.sistema_acoes.domain.Empresa;
+import com.javaee.sistema_acoes.domain.Cliente;
 
 @Repository
-public interface IEmpresaRepository extends MongoRepository<Empresa, Long> {
-    Empresa findById(String id);
+public interface ClienteRepository extends MongoRepository<Cliente, Long> {
+    Cliente findById(String id);
 }

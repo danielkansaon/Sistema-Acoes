@@ -14,22 +14,22 @@ import com.javaee.sistema_acoes.domain.Acao;
 import com.javaee.sistema_acoes.domain.Empresa;
 import com.javaee.sistema_acoes.domain.Cliente;
 import com.javaee.sistema_acoes.email.EmailSender;
-import com.javaee.sistema_acoes.repositories.IAcaoRepository;
-import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
-import com.javaee.sistema_acoes.repositories.IClienteRepository;
+import com.javaee.sistema_acoes.repositories.AcaoRepository;
+import com.javaee.sistema_acoes.repositories.EmpresaRepository;
+import com.javaee.sistema_acoes.repositories.ClienteRepository;
 
 
 @Service
 public class AcaoService implements IAcaoService{
 	@Autowired
-  	private IClienteRepository clienteRepository;
+  	private ClienteRepository clienteRepository;
 
   	@Autowired
-  	private IEmpresaRepository empresaRepository;
+  	private EmpresaRepository empresaRepository;
 	  
-	private IAcaoRepository acaoRepository;
+	private AcaoRepository acaoRepository;
 	
-	public AcaoService(IAcaoRepository acaoRepository){
+	public AcaoService(AcaoRepository acaoRepository){
 		this.acaoRepository = acaoRepository;
 	}
 	

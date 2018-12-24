@@ -1,21 +1,18 @@
 package com.javaee.sistema_acoes.services;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.javaee.sistema_acoes.domain.Empresa;
-import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
+import com.javaee.sistema_acoes.repositories.EmpresaRepository;
 
 @Service
 public class EmpresaService implements IEmpresaService{
-	private IEmpresaRepository empresaRepository;
+	private EmpresaRepository empresaRepository;
 	
-	public EmpresaService(IEmpresaRepository _empresaRepository){
+	public EmpresaService(EmpresaRepository _empresaRepository){
 		this.empresaRepository = _empresaRepository;
 	}
 	

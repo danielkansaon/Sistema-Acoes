@@ -8,23 +8,23 @@ import org.springframework.stereotype.Component;
 
 import com.javaee.sistema_acoes.domain.Acao;
 import com.javaee.sistema_acoes.domain.Cliente;
-import com.javaee.sistema_acoes.repositories.IAcaoRepository;
-import com.javaee.sistema_acoes.repositories.IClienteRepository;
+import com.javaee.sistema_acoes.repositories.AcaoRepository;
+import com.javaee.sistema_acoes.repositories.ClienteRepository;
 
 import com.javaee.sistema_acoes.domain.Empresa;
-import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
+import com.javaee.sistema_acoes.repositories.EmpresaRepository;
 
 @Component
 public class ApplicationBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private IClienteRepository clienteRepository;
-    private IEmpresaRepository empresaRepository;
-    private IAcaoRepository acaoRepository;
+    private ClienteRepository clienteRepository;
+    private EmpresaRepository empresaRepository;
+    private AcaoRepository acaoRepository;
 	private String idCliente;
 	private String idEmpresa;
     
-	public ApplicationBootstrap(IClienteRepository _clienteRepository, IEmpresaRepository _empresaRepository, 
-			IAcaoRepository acaoRepository) {
+	public ApplicationBootstrap(ClienteRepository _clienteRepository, EmpresaRepository _empresaRepository, 
+			AcaoRepository acaoRepository) {
         this.clienteRepository = _clienteRepository;
         this.empresaRepository = _empresaRepository;
 	}

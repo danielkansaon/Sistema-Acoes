@@ -9,13 +9,13 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.javaee.sistema_acoes.domain.Cliente;
-import com.javaee.sistema_acoes.repositories.IClienteRepository;
+import com.javaee.sistema_acoes.repositories.ClienteRepository;
 
 @Service
 public class ClienteService implements IClienteService{
-	private IClienteRepository clienteRepository;
+	private ClienteRepository clienteRepository;
 	
-	public ClienteService(IClienteRepository _clienteRepository){
+	public ClienteService(ClienteRepository _clienteRepository){
 		this.clienteRepository = _clienteRepository;
 	}
 	
