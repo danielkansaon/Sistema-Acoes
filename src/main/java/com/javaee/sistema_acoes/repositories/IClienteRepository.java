@@ -12,4 +12,5 @@ import com.javaee.sistema_acoes.domain.Cliente;
 
 @Repository
 public interface IClienteRepository extends MongoRepository<Cliente, Long> {
+    Set<Cliente> findById(String id);
 }

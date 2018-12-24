@@ -10,6 +10,6 @@ public interface IClienteService {
 	
   Cliente criar_cliente(Cliente cliente);    
 
-  Cliente obterClientePorId(long id);
+  Cliente obterClientePorId(String id);
   }
 

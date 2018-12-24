@@ -7,9 +7,10 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.mongodb.lang.Nullable;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -17,13 +18,13 @@ import lombok.Setter;
 public class Acao{
 
 	@Id
-	private long id;
-	private long cod_empresa;
+	private String id = UUID.randomUUID().toString();
+	private String idEmpresa;
 	private float valor_inicial;
 	private float valor_atual;
 	
 	@Nullable
-	private Date data_hora;
+	private Date data;
 	@Nullable
-	private long idcliente;
+	private String idCliente;
 }

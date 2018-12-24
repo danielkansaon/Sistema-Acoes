@@ -7,14 +7,25 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.javaee.sistema_acoes.domain.Acao;
+import com.javaee.sistema_acoes.domain.Empresa;
+import com.javaee.sistema_acoes.domain.Cliente;
 import com.javaee.sistema_acoes.email.EmailSender;
 import com.javaee.sistema_acoes.repositories.IAcaoRepository;
+import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
+import com.javaee.sistema_acoes.repositories.IClienteRepository;
 
 
 @Service
 public class AcaoService implements IAcaoService{
+	@Autowired
+  	private IClienteRepository clienteRepository;
+
+  	@Autowired
+  	private IEmpresaRepository empresaRepository;
+	  
 	private IAcaoRepository acaoRepository;
 	
 	public AcaoService(IAcaoRepository acaoRepository){
@@ -31,34 +42,87 @@ public class AcaoService implements IAcaoService{
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Acao criar_acao(Acao acao) {	
+
+		if(get_qtdAcoes_empresa(acao.getIdEmpresa()) < get_qtdMaxAcoes_empresa(acao.getIdEmpresa())){
+			throw new IllegalArgumentException("Limite esgotado de ações da empresa");
+		}
+
 		return acaoRepository.save(acao);
 	}
 
 	@Override
-	public Acao comprar_acao(long id, Acao acao) {
-		acao.setIdcliente(id);
-		Acao acaoSaved = acaoRepository.save(acao);
+	public Acao comprar_acao(String idAcao, String idNovoComprador) {
+		Optional<Acao> acao = acaoRepository.findById(idAcao);
 
+		if (!acao.isPresent()) {
+            throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao );
+		}
+						
 		new Thread("emailCompra"){
 			public void run(){
-				EmailSender.send("kansaonp@gmail.com", "Compra de Ação", "Confirmação da compra de uma nova ação!");
+				
+				String idAntigo = acao.getIdcliente();
+				EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Confirmação da compra de uma nova ação!");
+				
+				if(idAntigo != "0"){
+					EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Sua antiga ação foi comprada por outro cliente!");
+				}				
 			}
 		}.start();
 		
-		return acaoSaved;
+		acao.setIdcliente(idNovoComprador);
+		return acaoRepository.save(acao);
 	}
 
 	@Override
-	public Acao vender_acao(long id, Acao acao) {
-		acao.setIdcliente(id);
-		Acao acaoSaved = acaoRepository.save(acao);
+	public Acao vender_acao(String idAcao, String idNovoComprador) {
 
+		Optional<Acao> acao = acaoRepository.findById(idAcao);
+
+		if (!acao.isPresent()) {
+            throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao);
+		}
+						
 		new Thread("emailVenda"){
-			public void run(){
-				EmailSender.send("kansaonp@gmail.com", "Venda de Ação", "Confirmação da venda de uma ação!");
+			public void run(){				
+				String idAntigo = acao.getIdcliente();
+
+				if(idNovoComprador != "0"){
+					EmailSender.send(get_email_cliente(idNovoComprador),  "Compra Ação", "Confirmação da compra de uma ação!");
+				}
+
+				if(idAntigo != "0"){
+					EmailSender.send(get_email_cliente(idAntigo), "Venda de Ação", "Confirmação da venda de uma ação!");
+				}				
 			}
 		}.start();
 		
-		return acaoSaved;
+		acao.setIdcliente(idNovoComprador);
+		return acaoRepository.save(acao);	
+	}
+
+	private String get_email_cliente(String idCliente){
+		Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
+
+		if (!clienteOptional.isPresent()) {
+            throw new IllegalArgumentException("Id inválido: " + idCliente);
+		}
+
+		return clienteOptional.getEmail();
+	}
+
+	private int get_qtdAcoes_empresa(String idEmpresa){
+		List<Acao> empresaOptional = this.acaoRepository.findByEmpresa(idEmpresa)
+		return empresaOptional.size();		
+	}
+
+	private int get_qtdMaxAcoes_empresa(String idEmpresa){
+		Optional<Empresa> empresaOptional = empresaRepository.findById(idEmpresa);
+
+		if (!empresaOptional.isPresent()) {
+            throw new IllegalArgumentException("Id inválido: " + idEmpresa);
+		}
+
+		return empresaRepository.getQtdAcoes();
 	}
 }

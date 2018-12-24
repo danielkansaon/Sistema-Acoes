@@ -9,4 +9,6 @@ import com.javaee.sistema_acoes.domain.Acao;
 
 @Repository
 public interface IAcaoRepository extends MongoRepository<Acao, Long> {
+    Set<Acao> findById(String id);    
+    List<Acao> findByEmpresa(String id);
 }

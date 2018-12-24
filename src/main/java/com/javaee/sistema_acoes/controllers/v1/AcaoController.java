@@ -25,7 +25,6 @@ import io.swagger.annotations.ApiOperation;
 public class AcaoController {
 
 	public static final String BASE_URL = "/api/v1/acao";
-    public static int numero_maximo_acoes = 5;
 
     private final IAcaoService service;
 
@@ -41,31 +40,23 @@ public class AcaoController {
     }
 
     @ApiOperation(value = "Criar nova ação")
-    @PostMapping({"/novo/{idComprador}"})
+    @PostMapping({"/novo"})
     @ResponseStatus(HttpStatus.CREATED)
     public Acao create(@RequestBody Acao acao){
         return service.criar_acao(acao);
     }
 
     @ApiOperation(value = "Comprar uma ação")
-    @PutMapping({"/comprar/{idComprador}"})
+    @PutMapping({"/comprar/{idAcao}/{idNovoComprador}"})
     @ResponseStatus(HttpStatus.OK)
-    public Acao comprarAcao(@PathVariable long idComprador, @RequestBody Acao acao){
-        return service.comprar_acao(idComprador, acao);
+    public Acao comprarAcao(@PathVariable String idAcao, @PathVariable String idNovoComprador){
+        return service.comprar_acao(idAcao, idComprador);
     }
 
     @ApiOperation(value = "Vender uma ação")
-    @PutMapping({"/vender/{idComprador}"})
+    @PutMapping({"/vender/{idAcao}"})
     @ResponseStatus(HttpStatus.OK)
-    public Acao venderAcao(@RequestBody Acao acao){
-        return service.vender_acao((long)0, acao);
-    }
-
-    @ApiOperation(value = "Alterar número máximo de ações")
-    @PutMapping({"alterar_acoes/{numAcao}"})
-    @ResponseStatus(HttpStatus.OK)
-    public String alterarNumAcoes(int numAcao){
-        numero_maximo_acoes = numAcao;
-        return "Ok";
-    }
+    public Acao venderAcao(@PathVariable String idAcao){
+        return service.vender_acao(idAcao);
+    }    
 }

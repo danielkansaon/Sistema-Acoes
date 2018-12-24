@@ -32,11 +32,11 @@ public class ClienteService implements IClienteService{
 	}
 
 	@Override
-	public Cliente obterClientePorId(long id) {
+	public Cliente obterClientePorId(String id) {
 		return obterPorId(id);
 	}
 	
-	private Cliente obterPorId(long id) {
+	private Cliente obterPorId(String id) {
 		Optional<Cliente> clienteOptional = clienteRepository.findById(id);
 		if (!clienteOptional.isPresent()) {
             throw new IllegalArgumentException("Id inválido: " + id);

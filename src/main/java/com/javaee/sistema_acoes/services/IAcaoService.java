@@ -8,9 +8,9 @@ public interface IAcaoService {
 
 	Set<Acao> lista_todas_acoes();
 	
-    Acao comprar_acao(long id, Acao acao);
+    Acao comprar_acao(String idAcao, String idNovoComprador);
 	
-    Acao vender_acao(long id, Acao acao);
+    Acao vender_acao(String idAcao, String idNovoComprador);
     
     Acao criar_acao(Acao acao);
 

@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Empresa {
 	
 	@Id
-	private long id;
+	private String id = UUID.randomUUID().toString();;
 	private String nome;
+	private int qtdAcoes;
 }
