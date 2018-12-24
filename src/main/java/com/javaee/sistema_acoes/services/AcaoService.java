@@ -44,7 +44,7 @@ public class AcaoService implements IAcaoService{
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Acao criar_acao(Acao acao) {	
 
-		if(get_qtdAcoes_empresa(acao.getIdEmpresa()) < get_qtdMaxAcoes_empresa(acao.getIdEmpresa())){
+		if(get_qtdAcoes_empresa(acao.getIdEmpresa()) >= get_qtdMaxAcoes_empresa(acao.getIdEmpresa())){
 			throw new IllegalArgumentException("Limite esgotado de ações da empresa");
 		}
 

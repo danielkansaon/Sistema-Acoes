@@ -33,7 +33,6 @@ public class AcaoController {
     }
 
     @ApiOperation(value = "Obter todas as ações de empresas")
-    // @GetMapping({BASE_URL + "/getAcoes"})
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Set<Acao> getAll(){
@@ -41,20 +40,21 @@ public class AcaoController {
     }
 
     @ApiOperation(value = "Criar nova ação")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Acao create(@RequestBody Acao acao){
         return service.criar_acao(acao);
     }
 
     @ApiOperation(value = "Comprar uma ação")
-    @PutMapping({BASE_URL + "/comprar/{idAcao}/{idNovoComprador}"})
+    @PutMapping({"/comprar/{idAcao}/{idNovoComprador}"})
     @ResponseStatus(HttpStatus.OK)
     public Acao comprarAcao(@PathVariable String idAcao, @PathVariable String idNovoComprador){
         return service.comprar_acao(idAcao, idNovoComprador);
     }
 
     @ApiOperation(value = "Vender uma ação")
-    @PutMapping({BASE_URL + "/vender/{idAcao}"})
+    @PutMapping({"/vender/{idAcao}"})
     @ResponseStatus(HttpStatus.OK)
     public Acao venderAcao(@PathVariable String idAcao){
         return service.vender_acao(idAcao);

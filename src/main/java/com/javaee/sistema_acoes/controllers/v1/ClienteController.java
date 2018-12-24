@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(value = "Cliente")
 @RestController
-@RequestMapping(AcaoController.BASE_URL)
+@RequestMapping(ClienteController.BASE_URL)
 public class ClienteController {
 
 	public static final String BASE_URL = "/api/v1/cliente";
@@ -33,14 +33,15 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Obter todos os clientes")
-    // @GetMapping({BASE_URL + "/getClientes"})
     @GetMapping
+    //@GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Set<Cliente> getAll(){
         return clienteService.retornar_todos();
     }
     
     @ApiOperation(value = "Criar um novo cliente")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente){
        return clienteService.criar_cliente(cliente);

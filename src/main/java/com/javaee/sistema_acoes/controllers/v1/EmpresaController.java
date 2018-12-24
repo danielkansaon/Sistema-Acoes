@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(value = "Empresa")
 @RestController
-@RequestMapping(AcaoController.BASE_URL)
+@RequestMapping(EmpresaController.BASE_URL)
 public class EmpresaController {
 
 	public static final String BASE_URL = "/api/v1/empresa";
@@ -33,21 +33,21 @@ public class EmpresaController {
     }
 
     @ApiOperation(value = "Obter todas empresas")
-    // @GetMapping({BASE_URL + "/getEmpresas"})
-    @GetMapping
+    @GetMapping   
     @ResponseStatus(HttpStatus.OK)
     public Set<Empresa> getAll(){
         return empresaService.retornar_todos();
     }
     
     @ApiOperation(value = "Criar uma nova empresa")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Empresa create(@RequestBody Empresa empresa){
        return empresaService.criar_empresa(empresa);
     }
 
     @ApiOperation(value = "Alterar número máximo de ações")
-    @PutMapping({BASE_URL + "/alterar_acoes/{idEmpresa}/{qtdAcao}"})
+    @PutMapping({"/alterar_acoes/{idEmpresa}/{qtdAcao}"})
     @ResponseStatus(HttpStatus.OK)
     public Empresa alterarNumAcoes(@PathVariable String idEmpresa, @PathVariable int qtdAcao){
         return empresaService.atualizarQtdAcoes(idEmpresa, qtdAcao);
