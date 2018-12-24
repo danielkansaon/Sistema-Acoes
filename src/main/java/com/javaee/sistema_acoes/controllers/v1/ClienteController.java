@@ -33,9 +33,10 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Obter todos os clientes")
-    @GetMapping({BASE_URL + "/getClientes"})
+    // @GetMapping({BASE_URL + "/getClientes"})
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Set<Cliente> getClientes(){
+    public Set<Cliente> getAll(){
         return clienteService.retornar_todos();
     }
     

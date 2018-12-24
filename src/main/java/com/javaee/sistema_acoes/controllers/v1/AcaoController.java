@@ -32,10 +32,11 @@ public class AcaoController {
         this.service = _acaoService;
     }
 
-    @ApiOperation(value = "Obter todas as ações")
-    @GetMapping({BASE_URL + "/getAcoes"})
+    @ApiOperation(value = "Obter todas as ações de empresas")
+    // @GetMapping({BASE_URL + "/getAcoes"})
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Set<Acao> getAcoes(){
+    public Set<Acao> getAll(){
         return service.lista_todas_acoes();
     }
 

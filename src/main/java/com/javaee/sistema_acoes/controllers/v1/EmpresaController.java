@@ -33,9 +33,10 @@ public class EmpresaController {
     }
 
     @ApiOperation(value = "Obter todas empresas")
-    @GetMapping({BASE_URL + "/getEmpresas"})
+    // @GetMapping({BASE_URL + "/getEmpresas"})
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Set<Empresa> getEmpresas(){
+    public Set<Empresa> getAll(){
         return empresaService.retornar_todos();
     }
     

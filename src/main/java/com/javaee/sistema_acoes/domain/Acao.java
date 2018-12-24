@@ -29,7 +29,7 @@ public class Acao{
 	private String idCliente;
 	
 	@DBRef
-	private List<Cliente> clientes;
+	private Cliente cliente;
 	@DBRef
 	private Empresa empresa;
 }
