@@ -18,7 +18,7 @@ import lombok.Setter;
 public class Cliente {
 
 	@Id
-	private String idCliente = UUID.randomUUID().toString();
+	private String id = UUID.randomUUID().toString();
 	private String nome;
 	private String email;
 	

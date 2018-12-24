@@ -33,14 +33,13 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Obter todos os clientes")
-    @GetMapping
+    @GetMapping({BASE_URL + "/getClientes"})
     @ResponseStatus(HttpStatus.OK)
-    public Set<Cliente> getAll(){
+    public Set<Cliente> getClientes(){
         return clienteService.retornar_todos();
     }
     
     @ApiOperation(value = "Criar um novo cliente")
-    @PostMapping({"/criar"})
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente create(@RequestBody Cliente cliente){
        return clienteService.criar_cliente(cliente);

@@ -33,21 +33,20 @@ public class EmpresaController {
     }
 
     @ApiOperation(value = "Obter todas empresas")
-    @GetMapping
+    @GetMapping({BASE_URL + "/getEmpresas"})
     @ResponseStatus(HttpStatus.OK)
-    public Set<Empresa> getAll(){
+    public Set<Empresa> getEmpresas(){
         return empresaService.retornar_todos();
     }
     
     @ApiOperation(value = "Criar uma nova empresa")
-    @PostMapping({"/criar"})
     @ResponseStatus(HttpStatus.CREATED)
     public Empresa create(@RequestBody Empresa empresa){
        return empresaService.criar_empresa(empresa);
     }
 
     @ApiOperation(value = "Alterar número máximo de ações")
-    @PutMapping({"alterar_acoes/{idEmpresa}/{qtdAcao}"})
+    @PutMapping({BASE_URL + "/alterar_acoes/{idEmpresa}/{qtdAcao}"})
     @ResponseStatus(HttpStatus.OK)
     public Empresa alterarNumAcoes(@PathVariable String idEmpresa, @PathVariable int qtdAcao){
         return empresaService.atualizarQtdAcoes(idEmpresa, qtdAcao);

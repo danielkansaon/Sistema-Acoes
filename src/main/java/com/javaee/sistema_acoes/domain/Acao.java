@@ -1,7 +1,5 @@
 package com.javaee.sistema_acoes.domain;
 
-import java.sql.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,6 +8,8 @@ import com.mongodb.lang.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -27,4 +27,9 @@ public class Acao{
 	private Date data;
 	@Nullable
 	private String idCliente;
+	
+	@DBRef
+	private List<Cliente> clientes;
+	@DBRef
+	private Empresa empresa;
 }
