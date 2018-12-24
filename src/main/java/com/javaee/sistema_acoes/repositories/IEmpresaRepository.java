@@ -12,5 +12,5 @@ import com.javaee.sistema_acoes.domain.Empresa;
 
 @Repository
 public interface IEmpresaRepository extends MongoRepository<Empresa, Long> {
-    Set<Empresa> findById(String id);
+    Empresa findById(String id);
 }

@@ -13,9 +13,9 @@ import com.javaee.sistema_acoes.repositories.IEmpresaRepository;
 
 @Service
 public class EmpresaService implements IEmpresaService{
-	private IEmpresaService empresaRepository;
+	private IEmpresaRepository empresaRepository;
 	
-	public EmpresaService(IEmpresaService _empresaRepository){
+	public EmpresaService(IEmpresaRepository _empresaRepository){
 		this.empresaRepository = _empresaRepository;
 	}
 	
@@ -33,7 +33,7 @@ public class EmpresaService implements IEmpresaService{
 
     @Override
 	public Empresa atualizarQtdAcoes(String idEmpresa, int qtdAcoes) {		
-        Optional<Empresa> empresa = empresaRepository.findById(idEmpresa);
+        Empresa empresa = empresaRepository.findById(idEmpresa);
         empresa.setQtdAcoes(qtdAcoes);
 		return empresaRepository.save(empresa);
     }  

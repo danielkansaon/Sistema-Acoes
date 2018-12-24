@@ -37,10 +37,10 @@ public class ClienteService implements IClienteService{
 	}
 	
 	private Cliente obterPorId(String id) {
-		Optional<Cliente> clienteOptional = clienteRepository.findById(id);
-		if (!clienteOptional.isPresent()) {
+		Cliente clienteOptional = clienteRepository.findById(id);
+		if (clienteOptional == null) {
             throw new IllegalArgumentException("Id inválido: " + id);
         }
-		return clienteOptional.get();
+		return clienteOptional;
 	}
 }

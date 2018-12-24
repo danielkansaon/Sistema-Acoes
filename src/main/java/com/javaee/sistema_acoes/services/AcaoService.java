@@ -1,6 +1,7 @@
 package com.javaee.sistema_acoes.services;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -52,16 +53,16 @@ public class AcaoService implements IAcaoService{
 
 	@Override
 	public Acao comprar_acao(String idAcao, String idNovoComprador) {
-		Optional<Acao> acao = acaoRepository.findById(idAcao);
+		Acao acao = acaoRepository.findById(idAcao);
 
-		if (!acao.isPresent()) {
+		if (acao == null) {
             throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao );
 		}
 						
 		new Thread("emailCompra"){
 			public void run(){
 				
-				String idAntigo = acao.getIdcliente();
+				String idAntigo = acao.getIdCliente();
 				EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Confirmação da compra de uma nova ação!");
 				
 				if(idAntigo != "0"){
@@ -70,41 +71,36 @@ public class AcaoService implements IAcaoService{
 			}
 		}.start();
 		
-		acao.setIdcliente(idNovoComprador);
+		acao.setIdCliente(idNovoComprador);
 		return acaoRepository.save(acao);
 	}
 
 	@Override
-	public Acao vender_acao(String idAcao, String idNovoComprador) {
+	public Acao vender_acao(String idAcao) {
+		Acao acao = acaoRepository.findById(idAcao);
 
-		Optional<Acao> acao = acaoRepository.findById(idAcao);
-
-		if (!acao.isPresent()) {
+		if (acao == null) {
             throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao);
 		}
 						
 		new Thread("emailVenda"){
 			public void run(){				
-				String idAntigo = acao.getIdcliente();
-
-				if(idNovoComprador != "0"){
-					EmailSender.send(get_email_cliente(idNovoComprador),  "Compra Ação", "Confirmação da compra de uma ação!");
-				}
-
+				String idAntigo = acao.getIdCliente();
+				
 				if(idAntigo != "0"){
 					EmailSender.send(get_email_cliente(idAntigo), "Venda de Ação", "Confirmação da venda de uma ação!");
 				}				
 			}
 		}.start();
 		
-		acao.setIdcliente(idNovoComprador);
+		acao.setIdCliente("0");
 		return acaoRepository.save(acao);	
 	}
 
 	private String get_email_cliente(String idCliente){
-		Optional<Cliente> clienteOptional = clienteRepository.findById(idCliente);
+		Cliente clienteOptional = clienteRepository.findById(idCliente);
 
-		if (!clienteOptional.isPresent()) {
+		if (clienteOptional == null) {
             throw new IllegalArgumentException("Id inválido: " + idCliente);
 		}
 
@@ -112,17 +108,17 @@ public class AcaoService implements IAcaoService{
 	}
 
 	private int get_qtdAcoes_empresa(String idEmpresa){
-		List<Acao> empresaOptional = this.acaoRepository.findByEmpresa(idEmpresa)
+		List<Acao> empresaOptional = this.acaoRepository.findByEmpresa(idEmpresa);
 		return empresaOptional.size();		
 	}
 
 	private int get_qtdMaxAcoes_empresa(String idEmpresa){
-		Optional<Empresa> empresaOptional = empresaRepository.findById(idEmpresa);
+		Empresa empresaOptional = empresaRepository.findById(idEmpresa);
 
-		if (!empresaOptional.isPresent()) {
+		if (empresaOptional == null) {
             throw new IllegalArgumentException("Id inválido: " + idEmpresa);
 		}
 
-		return empresaRepository.getQtdAcoes();
+		return empresaOptional.getQtdAcoes();
 	}
 }

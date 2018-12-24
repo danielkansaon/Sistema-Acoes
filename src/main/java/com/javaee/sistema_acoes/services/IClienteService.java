@@ -6,7 +6,7 @@ import com.javaee.sistema_acoes.domain.Cliente;
 
 public interface IClienteService {
 
-	Set<Cliente> retornar_todos();
+  Set<Cliente> retornar_todos();
 	
   Cliente criar_cliente(Cliente cliente);    
 

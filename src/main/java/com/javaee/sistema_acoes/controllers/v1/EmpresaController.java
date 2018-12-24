@@ -49,7 +49,7 @@ public class EmpresaController {
     @ApiOperation(value = "Alterar número máximo de ações")
     @PutMapping({"alterar_acoes/{idEmpresa}/{qtdAcao}"})
     @ResponseStatus(HttpStatus.OK)
-    public String alterarNumAcoes(@PathVariable String idEmpresa, @PathVariable int qtdAcao){
+    public Empresa alterarNumAcoes(@PathVariable String idEmpresa, @PathVariable int qtdAcao){
         return empresaService.atualizarQtdAcoes(idEmpresa, qtdAcao);
     }
 }

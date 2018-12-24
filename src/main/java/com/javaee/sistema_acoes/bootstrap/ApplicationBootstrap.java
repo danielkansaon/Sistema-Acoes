@@ -34,12 +34,12 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
 	private void loadClientes() {
         Cliente cli = new Cliente();
         cli.setNome("João");
-        clie.setEmail("joao@gmail.com")
+        cli.setEmail("joao@gmail.com");
         clienteRepository.save(cli);
 
         Cliente cli2 = new Cliente();
         cli2.setNome("Maria");
-        clie.setEmail("maria@gmail.com")
+        cli2.setEmail("maria@gmail.com");
         clienteRepository.save(cli2);
     }
 

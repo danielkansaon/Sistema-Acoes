@@ -50,7 +50,7 @@ public class AcaoController {
     @PutMapping({"/comprar/{idAcao}/{idNovoComprador}"})
     @ResponseStatus(HttpStatus.OK)
     public Acao comprarAcao(@PathVariable String idAcao, @PathVariable String idNovoComprador){
-        return service.comprar_acao(idAcao, idComprador);
+        return service.comprar_acao(idAcao, idNovoComprador);
     }
 
     @ApiOperation(value = "Vender uma ação")
