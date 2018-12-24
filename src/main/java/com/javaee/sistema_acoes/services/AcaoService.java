@@ -1,5 +1,6 @@
 package com.javaee.sistema_acoes.services;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -58,22 +59,22 @@ public class AcaoService implements IAcaoService{
 		if (acao == null) {
             throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao);
 		}
+		
+		Cliente clienteOptional = clienteRepository.findById(idNovoComprador);
 
-		if(acao.getIdCliente() != null or acao.getIdCliente() != "0"){
+		if (clienteOptional == null) {
+            throw new IllegalArgumentException("Id cliente não existe: " + idNovoComprador);
+		}
+		
+		if(acao.getIdCliente() != null && !acao.getIdCliente().equals("0")){
 			throw new IllegalArgumentException("A ação não pode ser comprada pois já pertence a outro cliente. Ação: " + idAcao);
 		}
-
+		
 		acao.setData(new Date()); // Inserindo nova data de compra
 
 		new Thread("emailCompra"){
-			public void run(){
-				
-				String idAntigo = acao.getIdCliente();
-				EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Confirmação da compra da ação: " + idAcao);
-				
-				if(idAntigo != "0"){
-					EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Sua antiga ação foi comprada por outro cliente! Ação: " + idAcao);
-				}				
+			public void run(){				
+				EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Confirmação da compra da ação: " + idAcao);									
 			}
 		}.start();
 		
@@ -89,23 +90,27 @@ public class AcaoService implements IAcaoService{
             throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao);
 		}
 		
-		if(acao.getIdCliente() == null or acao.getIdCliente() == "0"){
+		if(acao.getIdCliente() == null || acao.getIdCliente().equals("0")){
 			throw new IllegalArgumentException("A ação não pode ser vendida pois não pertence a nenhum cliente. Ação: " + idAcao);
 		}
-
-		acao.setData(null);
 		
 		new Thread("emailVenda"){
 			public void run(){				
 				String idAntigo = acao.getIdCliente();
 				
-				if(idAntigo != "0"){
-					EmailSender.send(get_email_cliente(idAntigo), "Venda de Ação", "Confirmação da venda da ação: " + idAcao);
-				}				
+				Cliente clienteOptional = clienteRepository.findById(idAntigo);
+
+				if (clienteOptional == null) {
+		            throw new IllegalArgumentException("Id cliente não existe: " + idAntigo);
+				}
+				
+				EmailSender.send(get_email_cliente(idAntigo), "Venda de Ação", "Confirmação da venda da ação: " + idAcao);							
 			}
 		}.start();
 		
 		acao.setIdCliente("0");
+		acao.setData(null);
+		
 		return acaoRepository.save(acao);	
 	}
 	

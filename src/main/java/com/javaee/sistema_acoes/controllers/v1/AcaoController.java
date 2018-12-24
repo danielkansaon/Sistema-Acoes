@@ -1,5 +1,6 @@
 package com.javaee.sistema_acoes.controllers.v1;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.http.HttpStatus;
@@ -44,13 +45,6 @@ public class AcaoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Acao create(@RequestBody Acao acao){
         return service.criar_acao(acao);
-    }
-
-    @ApiOperation(value = "Obter todas as ações de uma empresa específica")
-    @GetMapping({"/{idEmpresa}"})
-    @ResponseStatus(HttpStatus.OK)
-    public List<Acao> getPorEmpresa(@PathVariable String idEmpresa){
-        return service.lista_todas_acoes_por_empresa(idEmpresa);
     }
 
     @ApiOperation(value = "Comprar uma ação")

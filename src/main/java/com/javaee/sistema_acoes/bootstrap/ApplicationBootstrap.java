@@ -20,7 +20,6 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
     private ClienteRepository clienteRepository;
     private EmpresaRepository empresaRepository;
     private AcaoRepository acaoRepository;
-	private String idCliente;
 	private String idEmpresa;
     
 	public ApplicationBootstrap(ClienteRepository _clienteRepository, EmpresaRepository _empresaRepository, 
@@ -49,7 +48,6 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
         Cliente cli2 = new Cliente();
         cli2.setNome("Maria");
         cli2.setEmail("maria@gmail.com");
-        idCliente = cli2.getId();
         clienteRepository.save(cli2);
     }
 
@@ -67,7 +65,6 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
         acao.setValor_atual(5);
         acao.setValor_inicial(4);        
         acao.setData(new Date());
-        acao.setIdCliente(idCliente);
         acao.setIdEmpresa(idEmpresa);
         
         acaoRepository.save(acao);
