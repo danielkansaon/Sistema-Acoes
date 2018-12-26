@@ -63,14 +63,16 @@ public class AcaoService implements IAcaoService{
 			throw new IllegalArgumentException("A ação não pode ser comprada pois já pertence a outro cliente. Ação: " + idAcao);
 		}
 
+		acao.setData(new Date()); // Inserindo nova data de compra
+
 		new Thread("emailCompra"){
 			public void run(){
 				
 				String idAntigo = acao.getIdCliente();
-				EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Confirmação da compra de uma nova ação!");
+				EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Confirmação da compra da ação: " + idAcao);
 				
 				if(idAntigo != "0"){
-					EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Sua antiga ação foi comprada por outro cliente!");
+					EmailSender.send(get_email_cliente(idNovoComprador), "Compra de Ação", "Sua antiga ação foi comprada por outro cliente! Ação: " + idAcao);
 				}				
 			}
 		}.start();
@@ -91,12 +93,14 @@ public class AcaoService implements IAcaoService{
 			throw new IllegalArgumentException("A ação não pode ser vendida pois não pertence a nenhum cliente. Ação: " + idAcao);
 		}
 
+		acao.setData(null);
+		
 		new Thread("emailVenda"){
 			public void run(){				
 				String idAntigo = acao.getIdCliente();
 				
 				if(idAntigo != "0"){
-					EmailSender.send(get_email_cliente(idAntigo), "Venda de Ação", "Confirmação da venda de uma ação!");
+					EmailSender.send(get_email_cliente(idAntigo), "Venda de Ação", "Confirmação da venda da ação: " + idAcao);
 				}				
 			}
 		}.start();
