@@ -32,16 +32,14 @@ public class SwaggerConfig {
 	private ApiInfo metaData(){
 
         Contact contact = new Contact("Daniel", "https://website.com", "kansaonp@gmail.com");
-
-        //@SuppressWarnings("deprecation");
         
         return new ApiInfo(
                 "Mercado de Ações - JEE",
-                "Swagger",
+                "Swagger - Documentação",
                 "1.0",
                 "Terms of Service: N/A",
                 "Daniel",
-                "Apache License Version 2.0",
-                "https://www.apache.org/licenses/LICENSE-2.0");
+                "",
+                "");
     }
 }

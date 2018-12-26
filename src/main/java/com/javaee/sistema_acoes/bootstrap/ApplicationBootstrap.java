@@ -66,7 +66,7 @@ public class ApplicationBootstrap implements ApplicationListener<ContextRefreshe
         Acao acao = new Acao();
         acao.setValor_atual(5);
         acao.setValor_inicial(4);        
-        acao.setData(new Date(2018,5,2));
+        acao.setData(new Date());
         acao.setIdCliente(idCliente);
         acao.setIdEmpresa(idEmpresa);
         

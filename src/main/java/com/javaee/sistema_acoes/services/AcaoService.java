@@ -56,9 +56,13 @@ public class AcaoService implements IAcaoService{
 		Acao acao = acaoRepository.findById(idAcao);
 
 		if (acao == null) {
-            throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao );
+            throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao);
 		}
-						
+
+		if(acao.getIdCliente() != null or acao.getIdCliente() != "0"){
+			throw new IllegalArgumentException("A ação não pode ser comprada pois já pertence a outro cliente. Ação: " + idAcao);
+		}
+
 		new Thread("emailCompra"){
 			public void run(){
 				
@@ -82,7 +86,11 @@ public class AcaoService implements IAcaoService{
 		if (acao == null) {
             throw new IllegalArgumentException("Ação não existente para este ID: " + idAcao);
 		}
-						
+		
+		if(acao.getIdCliente() == null or acao.getIdCliente() == "0"){
+			throw new IllegalArgumentException("A ação não pode ser vendida pois não pertence a nenhum cliente. Ação: " + idAcao);
+		}
+
 		new Thread("emailVenda"){
 			public void run(){				
 				String idAntigo = acao.getIdCliente();
@@ -95,6 +103,11 @@ public class AcaoService implements IAcaoService{
 		
 		acao.setIdCliente("0");
 		return acaoRepository.save(acao);	
+	}
+	
+	@Override	
+	public List<Acao> lista_todas_acoes_por_empresa(String idEmpresa){
+		return this.acaoRepository.findByEmpresa(idEmpresa);
 	}
 
 	private String get_email_cliente(String idCliente){

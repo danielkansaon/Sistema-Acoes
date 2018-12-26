@@ -32,7 +32,7 @@ public class AcaoController {
         this.service = _acaoService;
     }
 
-    @ApiOperation(value = "Obter todas as ações de empresas")
+    @ApiOperation(value = "Obter todas as ações de todas empresas")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Set<Acao> getAll(){
@@ -44,6 +44,13 @@ public class AcaoController {
     @ResponseStatus(HttpStatus.CREATED)
     public Acao create(@RequestBody Acao acao){
         return service.criar_acao(acao);
+    }
+
+    @ApiOperation(value = "Obter todas as ações de uma empresa específica")
+    @GetMapping({"/{idEmpresa}"})
+    @ResponseStatus(HttpStatus.OK)
+    public List<Acao> getPorEmpresa(@PathVariable String idEmpresa){
+        return service.lista_todas_acoes_por_empresa(idEmpresa);
     }
 
     @ApiOperation(value = "Comprar uma ação")
