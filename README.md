@@ -23,5 +23,12 @@ Documentação dos métodos da API
 ```
 http://localhost:8080/swagger-ui.html
 ```
+Configurar o email e senha no arquivo EmailSender.java
+
+```
+final String fromEmail = "******";
+final String password = "*********";
+```
+
 
 OBS: Para o envio do email de forma assíncrona, foi implementado uma thread separada ao invés de uma fila de mensagens.
