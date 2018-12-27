@@ -23,12 +23,12 @@ Documentação dos métodos da API
 ```
 http://localhost:8080/swagger-ui.html
 ```
-Configurar o email e senha no arquivo EmailSender.java
+Configurar o email e senha no arquivo EmailSender.java 
 
 ```
 final String fromEmail = "******";
 final String password = "*********";
 ```
-
+Também é necessário realizar uma modificação nas configurações de segurança da conta do Gmail para conseguir autenticar no servidor. Para isso, é necessário ir no email e então Minha Conta > Login e Segurança > Apps com acesso à conta > Ativar: permitir aplicativos menos seguros.
 
 OBS: Para o envio do email de forma assíncrona, foi implementado uma thread separada ao invés de uma fila de mensagens.
